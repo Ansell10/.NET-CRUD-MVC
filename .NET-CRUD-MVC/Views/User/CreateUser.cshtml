@@ -1,0 +1,51 @@
+﻿@model UserModel
+
+@{
+    ViewData["Title"] = "Create contact";
+}
+
+
+
+<div class="text-center">
+
+    <h1 class="display-4">Create user</h1>
+</div>
+<form asp-controller="User" asp-action="CreateUser" onsubmit="return matchPassword()" method="post">
+    <div class="form-group">
+        <label for="name">UserName</label>
+        <input type="text" asp-for="UserName" class="form-control" placeholder="Enter UserName">
+        @Html.ValidationMessageFor(userName => userName.UserName)
+    </div>
+
+    <div class="form-group">
+        <label for="name">Name</label>
+        <input type="text" asp-for="Name" class="form-control" placeholder="Enter name">
+        @Html.ValidationMessageFor(name => name.Name)
+    </div>
+
+    <div class="form-group">
+        <label for="email">Email address</label>
+        <input type="email" asp-for="Email" class="form-control" placeholder="Enter email">
+        @Html.ValidationMessageFor(email => email.Email)
+    </div>
+
+
+    <div class="form-group">
+        <label for="" password">Password</label>
+        <input type="password" id="password" asp-for="Password" class="form-control" placeholder="Enter phone number">
+        @Html.ValidationMessageFor(password => password.Password)
+    </div>
+
+    <div class="form-group">
+        <label for="password">Password</label>
+        <input type="password" id="confirm_password" asp-for="Password" class="form-control" placeholder="Enter phone number">
+        @Html.ValidationMessageFor(password => password.Password)
+    </div>
+
+
+
+    <button type="submit" class="btn btn-primary btn-block">Submit</button>
+    <a class="btn btn-secondary  btn-block" asp-controller="User" asp-action="Index"> Back</a>
+</form>
+
+

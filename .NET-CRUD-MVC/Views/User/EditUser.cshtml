@@ -1,0 +1,50 @@
+﻿@model UserModel
+@{
+    ViewData["Title"] = "Edit User";
+}
+
+<div class="text-center">
+
+    <h1 class="display-4">Edit User</h1>
+</div>
+<form asp-controller="User" asp-action="EditUser" onsubmit="return matchPassword()" method="post">
+
+    <input type="hidden" asp-for="Id">
+
+
+    <div class="form-group">
+        <label for="UserName">UserName</label>
+        <input type="text" asp-for="UserName" class="form-control" readonly="@(true)" placeholder="Enter UserName">
+        @Html.ValidationMessageFor(name => name.UserName)
+    </div>
+
+    <div class="form-group">
+        <label for="name">Name</label>
+        <input type="text" asp-for="Name" class="form-control" placeholder="Enter name">
+        @Html.ValidationMessageFor(name => name.Name)
+    </div>
+
+    <div class="form-group">
+        <label for="email">Email address</label>
+        <input type="email" asp-for="Email" class="form-control" placeholder="Enter email">
+        @Html.ValidationMessageFor(email => email.Email)
+    </div>
+
+
+    <div class="form-group">
+        <label for="" password">Password</label>
+        <input type="password" id="password" asp-for="Password" class="form-control" placeholder="Enter password">
+        @Html.ValidationMessageFor(password => password.Password)
+    </div>
+
+    <div class="form-group">
+        <label for="password">Password</label>
+        <input type="password" id="confirm_password" asp-for="Password" class="form-control" placeholder="Enter password">
+        @Html.ValidationMessageFor(password => password.Password)
+    </div>
+
+    <button type="submit" class="btn btn-primary btn-block">Save</button>
+    <a class="btn btn-secondary  btn-block" asp-controller="User" asp-action="Index"> Back</a>
+</form>
+
+

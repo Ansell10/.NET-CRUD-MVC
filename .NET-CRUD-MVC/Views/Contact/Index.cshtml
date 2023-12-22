@@ -1,0 +1,66 @@
+﻿@model List<ContactModel>
+@{
+    ViewData["Title"] = "List of Contacts";
+}
+
+
+
+<div class="text-center">
+    <div class="d-grid gap-2 d-md-flex justify-content-md-start">
+        <a class="btn btn-primary" role="button" asp-controller="Contact" asp-action="CreateContact">Add new contact</a>
+    </div>
+    <br />
+
+    @if (TempData["SucessMessage"] != null)
+    {
+
+        <div class="alert alert-success" role="alert">
+            <button type="button" class="btn btn-danger btn-sm close-alert" aria-label="Close">X</button>
+            @TempData["SucessMessage"]
+        </div>
+    }
+
+    @if (TempData["ErrorMessage"] != null)
+    {
+        <div class="alert alert-danger" role="alert">
+            <button type="button" class="btn btn-danger btn-sm close-alert" aria-label="Close">X</button>
+            @TempData["ErrorMessage"]
+        </div>
+    }
+    <br />
+    <h1 class="display-4">List of Contacts</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Name</th>
+                <th scope="col">Email</th>
+                <th scope="col">Phone Number</th>
+                <th scope="col"></th>
+            </tr>
+        </thead>
+        <tbody>
+
+            @if (Model != null && Model.Any())
+            {
+                foreach (ContactModel item in Model)
+                {
+                    <tr>
+                        <th scope="row">@item.Id</th>
+                        <td>@item.Name</td>
+                        <td>@item.Email</td>
+                        <td>@item.PhoneNumber</td>
+                        <td>
+                            <div class="btn-group" role="group">
+                                <a role="button" class="btn btn-primary" asp-route-id="@item.Id" asp-controller="Contact" asp-action="EditContact">Edit</a>
+                                <a role="button" class="btn btn-danger" asp-route-id="@item.Id" asp-controller="Contact" asp-action="ConfirmToDeleteContact">Delete</a>
+                            </div>
+                        </td>
+                    </tr>
+                }
+            }
+        </tbody>
+    </table>
+
+</div>
